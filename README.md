@@ -1,7 +1,7 @@
 
 CONSTANTS AND VARIABLES
 //define an array to hold the deck of cards as objects 
-//define a constant array that holds the players to keep track of current player, player hands, and scoring
+//define a constant object for the player and dealer to hold properties pertaining to each of them 
 
 CACHE VARIABLES
 //define variables for all buttons on the page (rules, game options, wager amounts, theme changes)
@@ -72,3 +72,9 @@ GAMEPLAY
 
 
 
+INITIAL DATA STRUCTURE
+-have the card objects array in a separate JS file to reduce clutter
+-card objects will contain suit and rank properties along with number value 10 for K Q and J and 11
+  -Ace cards will have the values 11, and 1 and this will be later implemented in the logic to determine which value is used
+-player object will have a property for total chips, current wager, flag for current player, and the player's hand
+-dealer object will have a property for the dealers hand and a flag for current player
