@@ -12,19 +12,25 @@
 </head>
 <body>
   <div class="table">
+    <h1 id="table-display">Twin Peaks Blackjack</h1>
+    <div class="dealer">
+      <div id="stock-pile">
+        <div class="card stock large back-red"></div>
+        <div class="card stock large back-red"></div>
+        <div class="card stock large back-red"></div>
+        <div class="card stock large back-red"></div>
+      </div>
+      <div class="hand">
+        <div id="deck-4" class="card dealt large outline"></div>
+        <div id="deck-3" class="card dealt large back-red"></div>
+      </div>
+    </div>
     <div class="player">
-      <div class="deck">
-        <div id="deck-2" class="card large outline"></div>
-        <div id="deck-1" class="card large back-blue shadow"></div>
+      <div class="hand">
+        <div id="deck-2" class="card dealt large outline"></div>
+        <div id="deck-1" class="card dealt large outline"></div>
       </div>
       <button id="btn" class="btn">Flip Card</button>
-    </div>
-    <div class="dealer">
-      <div class="deck">
-        <div id="deck-4" class="card large outline"></div>
-        <div id="deck-3" class="card large back-blue shadow"></div>
-      </div>
-      <button id="btn-2" class="btn">Flip Card</button>
     </div>
     <div class="table-sidebar">
       <h1>sidebar</h1>
