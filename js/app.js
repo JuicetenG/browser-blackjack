@@ -1,24 +1,17 @@
 // 1. Declare variables (arrays) for two decks of cards.
-let deck1 = [];
-let deck2 = [];
-let deck3 = [];
-let deck4 = [];
-let cardToRemove;
+let dealerHand;
+let playerHand;
+let stockPile;
 
-// 2. Create HTML elements (two <div>s) for the card decks:
-  // 1. Deck 1 should display the back of a card with a shadow outline, indicating a larger stack.
-  // 2. Deck 2 should display an empty card outline.
 // 3. Create cached element references for each of the card decks.
-let deck1El = document.querySelector('#deck-1');
-let deck2El = document.querySelector('#deck-2');
-let deck3El = document.querySelector('#deck-3');
-let deck4El = document.querySelector('#deck-4');
+const dealerHandElement = document.querySelector('.dealer-hand');
+const playerHandElement = document.querySelector('.player-hand');
 
 // 4. Add an event listener for the "Flip" button.
-document.querySelector('#btn').addEventListener('click', () => {
-  handleClick(deck1, deck2, deck1El, deck2El);
-  console.log(deck2, deck1);
-});
+// document.querySelector('#btn').addEventListener('click', () => {
+//   handleClick(deck1, deck2, deck1El, deck2El);
+//   console.log(deck2, deck1);
+// });
 
 // document.querySelector('#btn-2').addEventListener('click', () => {
 //   handleClick(deck3, deck4, deck3El, deck4El);
@@ -35,39 +28,37 @@ document.querySelector('#btn').addEventListener('click', () => {
   //   "cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02",
   //   "sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
   // };
+const init = () => {
+  stockPile = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02",
+    "hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02",
+    "cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02",
+    "sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
 
+  dealerHand = [stockPile.splice(randomCard(), 1), stockPile.splice(randomCard(), 1)];
+  playerHand = [stockPile.splice(randomCard(), 1), stockPile.splice(randomCard(), 1)];
+};
+  
 init();
-
+console.log(dealerHand, playerHand, stockPile);
 // 6. Declare a render() function to display a card after it is flipped.
-const render = (cardPicked, unflipped, flipped, unflippedEl, flippedEl) => {
+function render() {
+  let cardToAppend;
+  dealerHand.forEach((card) => {
+    cardToAppend = document.createElement('div');
+    cardToAppend.classList.add('card', 'dealt', 'large', card);
+    dealerHandElement.appendChild(cardToAppend);
+  });
 
-  // Removes outline class when first card is picked
-  if (flipped.length === 1) {  
-    flippedEl.classList.remove("outline");
-  }
+  playerHand.forEach((card) => {
+    cardToAppend = document.createElement('div');
+    cardToAppend.classList.add('card', 'dealt', 'large', card);
+    playerHandElement.appendChild(cardToAppend);
+  })
+}
 
-  // Remove previous picked card from deck2's class list. 
-  if (flipped.length > 1) {  
-    flippedEl.classList.remove(cardToRemove);
-  }
-
-  // Set card to be removed on next click
-  cardToRemove = cardPicked;
-
-  // Apply current picked card deck2's class list. For example, if picked card was "h08", the the deck2El would gain the class "h08", which correlates to a background image of the eight of hearts. 
-  flippedEl.classList.add(cardPicked) ; 
-
-  // Check which deck has the majority of cards. Once deck2 has more cards, remove shadow from deck1 and apply it to deck2.
-  if (flipped.length === 26) {  
-    flippedEl.classList.add("shadow");
-    unflippedEl.classList.remove("shadow");
-  }
-	
-  // If the deck is empty, add an outline and remove the card back color
-  if (unflipped.length === 0) {  
-    unflippedEl.classList.add("outline");
-    unflippedEl.classList.remove("back-blue");
-  }
+render();
+function randomCard() {
+  return Math.floor(Math.random() * stockPile.length);
 }
 
 // 7. Stub up a handleClick() function for the event listener to call.

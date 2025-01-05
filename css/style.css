@@ -21,8 +21,10 @@ body {
   display: grid;
   grid-template-columns: 550px minmax(200px, 300px);
   grid-template-rows: 75px 1fr 1fr;
-  border: 4px solid black;
-  background-color: #696969;
+  border: 8px solid black;
+  border-radius: 12px;
+  background-color: #195019;
+  opacity: .95;
 }
 
 #table-display {
