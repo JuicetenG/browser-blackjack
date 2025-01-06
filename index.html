@@ -12,7 +12,6 @@
 </head>
 <body>
   <div class="table">
-    <h1 id="table-display">Twin Peaks Blackjack</h1>
     <div class="dealer">
       <div id="stock-pile">
         <div class="card stock large back-red"></div>
@@ -24,18 +23,20 @@
 
       </div>
     </div>
+    <h1 id="table-display"></h1>
     <div class="player">
       <div class="player-hand">
 
       </div>
       <div class="button-wrapper">
-        <button id="hit-button" class="btn">Hit</button>
-        <button id="hit-button" class="btn">Stand</button>
+        <button id="hit-button" class="game btn">Hit</button>
+        <button id="stand-button" class="game btn">Stand</button>
       </div>
     </div>
     <div class="table-sidebar">
       <h1>sidebar</h1>
-      <p>display player info here</p>
+      <div>display player info here</div>
+      <button id="restart-button" class="btn">restart</button>
     </div>
   </div>
 </body>

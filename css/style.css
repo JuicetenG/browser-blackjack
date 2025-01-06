@@ -20,7 +20,7 @@ body {
   height: 70vh;
   display: grid;
   grid-template-columns: 550px minmax(200px, 300px);
-  grid-template-rows: 75px 1fr 1fr;
+  grid-template-rows: 1fr 75px 1fr;
   border: 8px solid black;
   border-radius: 12px;
   background-color: #195019;
@@ -28,7 +28,9 @@ body {
 }
 
 #table-display {
-  margin: 1.2em auto 0;
+  margin: 0 auto 0;
+  grid-row: 2;
+  grid-column: 1;
 }
 
 .player,
@@ -46,9 +48,8 @@ body {
 }
 
 .dealer {
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 1;
-  margin-bottom: 2em;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -57,8 +58,9 @@ body {
   margin: 0 -2em 0 -2em;
 }
 
-.hand,
-#stock-pile {
+#stock-pile,
+.dealer-hand,
+.player-hand{
   width: 200px;
 }
 
@@ -73,7 +75,7 @@ body {
 }
 
 .dealt {
-  margin: 0 -1em 0 -1em
+  margin: 0 -1.5em 0 -1.5em;
 }
 
 .card.outline {
@@ -92,9 +94,11 @@ body {
   background-color: #202d7a;
   font-weight: bold;
   border: 2px solid #202d7a;
+  width: 75px;
 }
 
 .button-wrapper {
   display: flex;
   gap: 0.5em;
 }
+
