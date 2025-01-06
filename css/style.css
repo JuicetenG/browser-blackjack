@@ -35,7 +35,6 @@ body {
 .dealer {
   text-align: center;
   display: flex;
-
 }
 
 .player {
@@ -93,4 +92,9 @@ body {
   background-color: #202d7a;
   font-weight: bold;
   border: 2px solid #202d7a;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 0.5em;
 }
