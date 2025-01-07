@@ -28,15 +28,29 @@
       <div class="player-hand">
 
       </div>
-      <div class="button-wrapper">
+      <div class="player-action-buttons">
         <button id="hit-button" class="game btn">Hit</button>
         <button id="stand-button" class="game btn">Stand</button>
       </div>
     </div>
     <div class="table-sidebar">
-      <h1>sidebar</h1>
-      <div>display player info here</div>
-      <button id="restart-button" class="btn">restart</button>
+      <div id="scoreboard">
+        <h1>ScoreBoard</h1>
+        <div id="scores-wrapper">
+          <div class="score-box">
+            <h2>Dealer</h2>
+            <h2 class="dealer-score"></h2>
+          </div>
+          <div class="score-box">
+            <h2>Player</h2>
+            <h2 class="player-score"></h2>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-buttons">
+        <button id="new-hand-button" class="btn">new round</button>
+        <button id="restart-button" class="btn">clear scores</button>
+      </div>
     </div>
   </div>
 </body>

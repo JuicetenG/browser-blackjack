@@ -21,8 +21,6 @@ function init() {
   initStockPile();
   dealerHand = [randomCard(), randomCard()];
   playerHand = [randomCard(), randomCard()];
-  // playerHand = [stockPile[13], stockPile[12]];
-  // dealerHand= [stockPile[1], stockPile[0]];
   displayText = 'Player\'s turn';
   playerTurn = true;
   render();
@@ -48,8 +46,11 @@ function render() {
     playerHandElement.appendChild(cardToAppend);
   });
 
-  if(playerTurn) tableDisplayElement.innerText = displayText;
-  if(checkWinner() === true) tableDisplayElement.innerText = displayText;
+  if(calculateHandValue(playerHand) === 21 || calculateHandValue(dealerHand) === 21) {
+    checkWinner();
+    tableDisplayElement.innerText = displayText;
+  }
+  tableDisplayElement.innerText = displayText;
 }
 
 function randomCard() {
@@ -59,29 +60,21 @@ function randomCard() {
   return cardToReturn;
 }
 
-// function restartGame() {
-//   if(checkWinner() === true) {
-//     init();
-//   } else return;
-// }
-
 function playerTurnListeners(e) {
   if(!playerTurn) return;
-  if(checkWinner() === true) return;
   if(e.target.id === 'hit-button') {
     playerHand.push(randomCard());
     render();
-    console.log(game.calculateHandValue(playerHand));
+    if(calculateHandValue(playerHand) > 21 ){
+      checkWinner();
+      render();
+      playerTurn = false;
+    }
   } 
   if(e.target.id === 'stand-button') {
     displayText = 'Dealer\'s turn';
     playerTurn = false;
     dealerTurn();
-    render();
-    if(checkStandWin() === true) {
-      render();
-      playerTurn = false;
-    };
   }
 }
 
@@ -91,8 +84,7 @@ function dealerTurn() {
     render();
   }
   if(calculateHandValue(dealerHand) >= 17) {
-    displayText = 'Player\'s turn, dealer cannot hit';
-    playerTurn = true;
+    checkWinner();
     render();
   }
 }
@@ -117,9 +109,16 @@ function calculateHandValue(hand) {
 function checkWinner() {
   dealerHandValue = calculateHandValue(dealerHand);
   playerHandValue =  calculateHandValue(playerHand);
-    
-  if(playerHandValue < 21 && dealerHandValue < 21) return false;
- 
+  
+  if(dealerHandValue === 21) {
+    displayText = 'Dealer Wins!';
+    return true;
+  }
+  if(playerHandValue === 21) {
+    displayText = 'Player Wins!';
+   
+  }
+
   if(playerHandValue > 21) {
     displayText = 'Player busts, Dealer wins!';
     return true;
@@ -136,24 +135,4 @@ function checkWinner() {
       displayText = 'It\'s a tie!';
       return true;
   }
-}
-
-function checkStandWin() {
-  dealerHandValue = calculateHandValue(dealerHand);
-  playerHandValue = calculateHandValue(playerHand); 
-
-  if(dealerHandValue >= 17) {
-    if(playerHandValue < dealerHandValue) {
-      displayText = 'Dealer wins!';
-      return true;
-    }
-    if(playerHandValue > dealerHandValue) {
-      displayText = 'Player wins!';
-      return true;
-    }
-    if(playerHandValue === dealerHandValue) {
-      displayText = 'It\'s a tie!'
-      return true;
-    }
-  } 
 }

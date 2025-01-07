@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: consolas;
 }
 
 .table {
@@ -19,7 +20,7 @@ body {
   min-width: 550px;
   height: 70vh;
   display: grid;
-  grid-template-columns: 550px minmax(200px, 300px);
+  grid-template-columns: 550px  300px;
   grid-template-rows: 1fr 75px 1fr;
   border: 8px solid black;
   border-radius: 12px;
@@ -35,8 +36,8 @@ body {
 
 .player,
 .dealer {
-  text-align: center;
   display: flex;
+  text-align: center;
 }
 
 .player {
@@ -55,7 +56,35 @@ body {
 }
 
 .stock {
-  margin: 0 -2em 0 -2em;
+  margin: 0 -2.07em 0 -2.07em;
+}
+
+.dealt {
+  margin: 0 -1.5em 0 -1.5em;
+}
+
+/* .card.outline {
+  border: 0.15em dashed #202d7a;
+}
+
+.card.shadow {
+  box-shadow: 7px 7px 7px 0 rgba(41, 41, 41, 0.95) !important;
+} */
+
+.btn {
+  margin-top: 2vh;
+  padding: 0.8em;
+  border-radius: 5px;
+  color: white;
+  background-color: #202d7a;
+  font-weight: bold;
+  border: 2px solid #202d7a;
+  width: 75px;
+}
+
+.player-action-buttons {
+  display: flex;
+  gap: 0.5em;
 }
 
 #stock-pile,
@@ -67,38 +96,31 @@ body {
 .table-sidebar {
   grid-row: span 3;
   grid-column: 2;
-  border: 2px solid #202d7a;
+  text-align: center;
+  align-self: center;
   width: 97%;
   height: 98%;
-  align-self: center;
-  padding-left: 10px;
-}
-
-.dealt {
-  margin: 0 -1.5em 0 -1.5em;
-}
-
-.card.outline {
-  border: 0.15em dashed #202d7a;
-}
-
-.card.shadow {
-  box-shadow: 7px 7px 7px 0 rgba(41, 41, 41, 0.95) !important;
-}
-
-.btn {
-  margin-top: 2vh;
-  padding: .8rem;
-  border-radius: 5px;
-  color: white;
-  background-color: #202d7a;
-  font-weight: bold;
-  border: 2px solid #202d7a;
-  width: 75px;
-}
-
-.button-wrapper {
   display: flex;
-  gap: 0.5em;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
+#scoreboard h1 {
+  margin-bottom: 0;
+}
+
+#scoreboard {
+  display: flex;
+  flex-direction: column;
+}
+
+#scores-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.dealer-score,
+.player-score {
+  width: 40%;
+}
