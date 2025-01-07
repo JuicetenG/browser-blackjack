@@ -49,8 +49,12 @@ function render() {
   if(calculateHandValue(playerHand) === 21 || calculateHandValue(dealerHand) === 21) {
     checkWinner();
     tableDisplayElement.innerText = displayText;
-  }
-  tableDisplayElement.innerText = displayText;
+    playerTurn = false;
+  } else if (calculateHandValue(playerHand) > 21 || calculateHandValue(dealerHand) > 21) {
+    checkWinner();
+    tableDisplayElement.innerText = displayText;
+    playerTurn = false;
+  } else tableDisplayElement.innerText = displayText;
 }
 
 function randomCard() {
@@ -65,11 +69,6 @@ function playerTurnListeners(e) {
   if(e.target.id === 'hit-button') {
     playerHand.push(randomCard());
     render();
-    if(calculateHandValue(playerHand) > 21 ){
-      checkWinner();
-      render();
-      playerTurn = false;
-    }
   } 
   if(e.target.id === 'stand-button') {
     displayText = 'Dealer\'s turn';
