@@ -88,11 +88,6 @@ function checkWinConditions() {
   }
 }
 
-// function incrementScores() {
-//   if(compareHands() === 'player') playerScore++;
-//   if(compareHands() === 'dealer') dealerScore++;
-// }
-
 function randomCard() {
   let index = Math.floor(Math.random() * stockPile.length);
   let cardToReturn = stockPile[index];
