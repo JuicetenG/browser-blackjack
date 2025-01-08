@@ -54,10 +54,11 @@ function render() {
   tableDisplayElement.innerText = 'Player\'s Turn';
   
   dealerHandElement.innerHTML = '';
-  dealerHand.forEach((card) => {
+  dealerHand.forEach((card, index) => {
     cardToAppend = document.createElement('div');
     cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
     dealerHandElement.appendChild(cardToAppend);
+    if(index === dealerHand.length -1) cardToAppend.classList.add('back-red');
   });
 
   playerHandElement.innerHTML = '';
@@ -77,20 +78,23 @@ function checkWinConditions() {
   if(calculateHandValue(playerHand) > 21 || calculateHandValue(dealerHand) > 21) {
     compareHands();
     playerTurn = false;
+    dealerHandElement.lastChild.classList.remove('back-red');
     return;
   }
   if(calculateHandValue(playerHand) === 21 || calculateHandValue(dealerHand) === 21) {
     compareHands();
     playerTurn = false;
+    dealerHandElement.lastChild.classList.remove('back-red');
   } 
   if(stand === true) {
     compareHands();
+    dealerHandElement.lastChild.classList.remove('back-red');
   }
 }
 
 function randomCard() {
-  let index = Math.floor(Math.random() * stockPile.length);
-  let cardToReturn = stockPile[index];
+  const index = Math.floor(Math.random() * stockPile.length);
+  const cardToReturn = stockPile[index];
   stockPile.splice(index, 1);
   return cardToReturn;
 }
@@ -118,6 +122,7 @@ function dealerTurn() {
   }
 }
 
+//refactor for reduce 
 function calculateHandValue(hand) {
   let total = 0;
   let aces = 0;
