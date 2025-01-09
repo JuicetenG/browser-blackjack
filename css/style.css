@@ -139,7 +139,7 @@ body {
 		transform: rotateY(25deg);
 	}
 	50% {
-		transform: rotateY(80deg);
+		transform: rotateY(90deg);
 	}
 	100% {
 		transform: none;
