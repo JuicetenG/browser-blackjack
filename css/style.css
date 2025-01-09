@@ -21,7 +21,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   padding: 0.25em 0.5em 0.25em;
   background-color: #000000cb;
   opacity: 0.75;
@@ -39,7 +39,7 @@ body {
   margin-top: auto;
   margin-bottom: auto;
   width: 950px;
-  height: 675px;
+  height: 70vh;
   display: grid;
   grid-template-columns: 675px  270px;
   grid-template-rows: 60px 1fr  1fr;
@@ -102,6 +102,17 @@ body {
   position: relative;
 }
 
+.player-hand > .card:hover {
+  z-index: 100;
+  transform: translateY(-15px);
+  transition: 2s;
+}
+
+.player-hand > .card:not( :hover ) {
+  transform: translateY(0);
+  transition: 2s;
+}
+
 @keyframes card-fade {
   from {
     opacity: 0;
@@ -123,14 +134,6 @@ body {
   animation-name: card-fade;
   animation-duration: 1s;
 }
-
-/* .card.outline {
-  border: 0.15em dashed #202d7a;
-}
-
-.card.shadow {
-  box-shadow: 7px 7px 7px 0 rgba(41, 41, 41, 0.95) !important;
-} */
 
 #rules-button div {
   width: 30px;
