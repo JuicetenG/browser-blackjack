@@ -23,11 +23,6 @@ const gameButtons = document.querySelectorAll('.game');
 const restartButton = document.querySelector('#restart-button');
 const newRoundButton = document.querySelector('#new-round-button');
 
-//add event listeners
-gameButtons.forEach((button) => button.addEventListener('click', playerTurnListeners));
-restartButton.addEventListener('click', init);
-newRoundButton.addEventListener('click', initNewRound);
-
 //initializes when page loads or when user clears scores
 function init() {
   initStockPile();
@@ -76,6 +71,11 @@ function render() {
   playerScoreElement.innerText = playerScore;
 }
 
+//add event listeners
+gameButtons.forEach((button) => button.addEventListener('click', playerTurnListeners));
+restartButton.addEventListener('click', init);
+newRoundButton.addEventListener('click', initNewRound);
+
 function appendStockCards() {
   stockPileElement.innerText = '';
   for(let i = 0; i < 4; i++) {
@@ -110,15 +110,31 @@ function renderPlayerHit() {
 
 function renderDealerHit() {
   tableDisplayElement.innerText = 'Dealer\'s turn';
+  cardFlip();
   dealerHand.push(randomCard());
+
   const newIndex = dealerHand.length - 1;
-  const removeIndex = dealerHand.length - 2;
+  // const removeIndex = dealerHand.length - 2;
   let cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', dealerHand[newIndex].cardClass, 'back-red');
-  dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
+  // dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
+ 
   dealerHandElement.appendChild(cardToAppend);
-  cardToAppend.classList.add('fade-in');
   dealerTurn();
+}
+
+function renderWinner() {
+  setTimeout(() => {
+    cardFlip();
+    tableDisplayElement.innerText = displayText;
+    playerScoreElement.innerText = playerScore;
+    dealerScoreElement.innerText = dealerScore;
+  }, 400);
+}
+
+function cardFlip() {
+  dealerHandElement.lastChild.classList.remove('back-red');
+  dealerHandElement.lastChild.classList.add('flip');
 }
 
 function checkWinConditions() {
@@ -137,15 +153,6 @@ function checkWinConditions() {
     compareHands();
     renderWinner();
   }
-}
-
-function renderWinner() {
-  setTimeout(() => {
-    dealerHandElement.lastChild.classList.remove('back-red');
-    tableDisplayElement.innerText = displayText;
-    playerScoreElement.innerText = playerScore;
-    dealerScoreElement.innerText = dealerScore;
-  }, 600)
 }
 
 function randomCard() {
