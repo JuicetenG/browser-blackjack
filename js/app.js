@@ -68,6 +68,7 @@ function render() {
     });
   // }, 400);
   
+  checkWinConditions();
   dealerScoreElement.innerText = dealerScore;
   playerScoreElement.innerText = playerScore;
 
