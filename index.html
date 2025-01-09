@@ -8,12 +8,9 @@
 	<link rel="stylesheet" href="./css/style.css">
   <script defer src="./js/deck.js"></script>
   <script defer src="./js/app.js"></script>
-	<title>Card Deck Starter Code</title>
+	<title>Twin Peaks Blackjack</title>
 </head>
 <body>
-  <div id="rules">
-    
-  </div>
   <header id="header-menu">
     <div id="title">
       TWIN PEAKS BLACKJACK
@@ -41,28 +38,28 @@
       <div class="player-hand">
 
       </div>
-      <div class="player-action-buttons">
-        <button id="hit-button" class="game btn">Hit</button>
-        <button id="stand-button" class="game btn">Stand</button>
-      </div>
+
     </div>
     <div class="table-sidebar">
-      <div id="scoreboard">
-        <h1>ScoreBoard</h1>
-        <div id="scores-wrapper">
-          <div class="score-box">
-            <h2>Dealer</h2>
-            <h2 class="dealer-score"></h2>
-          </div>
-          <div class="score-box">
-            <h2>Player</h2>
-            <h2 class="player-score"></h2>
-          </div>
+      <div id="scores-wrapper">
+        <div class="score-box">
+          <h2 class="score-heading">Dealer</h2>
+          <h2 class="dealer-score score"></h2>
+        </div>
+        <div class="score-box">
+          <h2 class="score-heading">Player</h2>
+          <h2 class="player-score score"></h2>
         </div>
       </div>
       <div class="sidebar-buttons">
-        <button id="new-round-button" class="btn">new round</button>
-        <button id="restart-button" class="btn">clear scores</button>
+        <div class="round-action-buttons">
+          <button id="new-round-button" class="btn">new round</button>
+          <button id="restart-button" class="btn">clear scores</button>
+        </div>
+        <div class="player-action-buttons">
+          <button id="hit-button" class="game btn">Hit</button>
+          <button id="stand-button" class="game btn">Stand</button>
+        </div>
       </div>
     </div>
   </div>

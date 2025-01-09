@@ -88,14 +88,14 @@ function appendStockCards() {
   
   for(let i = 0; i < 4; i++) {
     const stockCard = document.createElement('div');
-    stockCard.classList.add('card', 'stock', 'large', 'back-red');
+    stockCard.classList.add('card', 'stock', 'xlarge', 'back-red', 'shadow');
     stockPileElement.appendChild(stockCard);
   }
 }
 
 function createDealerDeck(card, index) {
   let cardToAppend = document.createElement('div');
-  cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
+  cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', card.cardClass);
   // setTimeout(() => {
     cardToAppend.classList.add('fade-in');
   // }, 100);
@@ -105,7 +105,7 @@ function createDealerDeck(card, index) {
 
 function createPlayerDeck(card, index) {
   let cardToAppend = document.createElement('div');
-  cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
+  cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', card.cardClass);
   // setTimeout(() => {
     cardToAppend.classList.add('fade-in');
   // }, 100);
@@ -115,7 +115,7 @@ function createPlayerDeck(card, index) {
 function renderPlayerHit() {
   playerHand.push(randomCard());
   let cardToAppend = document.createElement('div');
-  cardToAppend.classList.add('card', 'dealt', 'large', playerHand[playerHand.length - 1].cardClass);
+  cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', playerHand[playerHand.length - 1].cardClass);
   playerHandElement.appendChild(cardToAppend);
   // setTimeout(() => {
     cardToAppend.classList.add('fade-in');
@@ -123,18 +123,19 @@ function renderPlayerHit() {
 }
 
 function renderDealerHit() {
-  tableDisplayElement.innerText = 'Dealer\'s turn';
-  dealerHand.push(randomCard());
-  const newIndex = dealerHand.length - 1;
-  const removeIndex = dealerHand.length - 2;
-  let cardToAppend = document.createElement('div');
-  cardToAppend.classList.add('card', 'dealt', 'large', dealerHand[newIndex].cardClass, 'back-red');
-  dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
-  dealerHandElement.appendChild(cardToAppend);
-  // setTimeout(() => {
-    cardToAppend.classList.add('fade-in');
-  // }, 200);
-  setTimeout(() => {
+  setTimeout(() => { 
+    tableDisplayElement.innerText = 'Dealer\'s turn';
+    dealerHand.push(randomCard());
+    const newIndex = dealerHand.length - 1;
+    const removeIndex = dealerHand.length - 2;
+    let cardToAppend = document.createElement('div');
+    cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', dealerHand[newIndex].cardClass, 'back-red');
+    dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
+    dealerHandElement.appendChild(cardToAppend);
+    // setTimeout(() => {
+      cardToAppend.classList.add('fade-in');
+    // }, 200);
+  
     dealerTurn();
   }, 400);
 }
