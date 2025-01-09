@@ -52,7 +52,7 @@ function initNewRound() {
 //renders on page load or new round start
 function render() {
   tableDisplayElement.innerText = 'Player\'s Turn';
-  
+
   appendStockCards();
   dealerHandElement.innerHTML = '';
   dealerHand.forEach((card, index) => {
@@ -65,7 +65,7 @@ function render() {
       let cardToAppend = createPlayerDeck(card, index);
       playerHandElement.appendChild(cardToAppend);
     });
-  
+
   checkWinConditions();
   dealerScoreElement.innerText = dealerScore;
   playerScoreElement.innerText = playerScore;
@@ -75,7 +75,6 @@ function render() {
 gameButtons.forEach((button) => button.addEventListener('click', playerTurnListeners));
 restartButton.addEventListener('click', init);
 newRoundButton.addEventListener('click', initNewRound);
-
 function appendStockCards() {
   stockPileElement.innerText = '';
   for(let i = 0; i < 4; i++) {
@@ -112,13 +111,11 @@ function renderDealerHit() {
   tableDisplayElement.innerText = 'Dealer\'s turn';
   cardFlip();
   dealerHand.push(randomCard());
-
   const newIndex = dealerHand.length - 1;
   // const removeIndex = dealerHand.length - 2;
   let cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', dealerHand[newIndex].cardClass, 'back-red');
   // dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
- 
   dealerHandElement.appendChild(cardToAppend);
   dealerTurn();
 }
@@ -131,7 +128,6 @@ function renderWinner() {
     dealerScoreElement.innerText = dealerScore;
   }, 400);
 }
-
 function cardFlip() {
   dealerHandElement.lastChild.classList.remove('back-red');
   dealerHandElement.lastChild.classList.add('flip');
@@ -205,7 +201,7 @@ function compareHands() {
   let winner = '';
   dealerHandValue = calculateHandValue(dealerHand);
   playerHandValue =  calculateHandValue(playerHand);
-  
+
   if(dealerHandValue === 21 && playerHandValue === 21) {
     displayText === 'It\'s a tie!';
     winner = 'tie'
@@ -239,4 +235,3 @@ function compareHands() {
   if(winner === 'player') playerScore++;
   if(winner === 'dealer') dealerScore++;
 }
-
