@@ -13,6 +13,7 @@ let playerScore;
 const dealerHandElement = document.querySelector('.dealer-hand');
 const playerHandElement = document.querySelector('.player-hand');
 const tableDisplayElement = document.querySelector('#table-display');
+const stockPileElement = document.querySelector('#stock-pile');
 const tableSidebarElement = document.querySelector('.table-sidebar');
 const dealerScoreElement = document.querySelector('.dealer-score');
 const playerScoreElement = document.querySelector('.player-score');
@@ -50,46 +51,129 @@ function initNewRound() {
 }
 
 function render() {
-  let cardToAppend;
   tableDisplayElement.innerText = 'Player\'s Turn';
   
+  appendStockCards();
   dealerHandElement.innerHTML = '';
   dealerHand.forEach((card, index) => {
-    cardToAppend = document.createElement('div');
-    cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
+    let cardToAppend = createDealerDeck(card, index);
     dealerHandElement.appendChild(cardToAppend);
-    if(index === dealerHand.length -1) cardToAppend.classList.add('back-red');
   });
 
   playerHandElement.innerHTML = '';
-  playerHand.forEach((card) => {
-    cardToAppend = document.createElement('div');
-    cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
-    playerHandElement.appendChild(cardToAppend);
-  });
+  // setTimeout(() => {
+    playerHand.forEach((card, index) => {
+      let cardToAppend = createPlayerDeck(card, index);
+      playerHandElement.appendChild(cardToAppend);
+    });
+  // }, 400);
+  
+  dealerScoreElement.innerText = dealerScore;
+  playerScoreElement.innerText = playerScore;
 
-  checkWinConditions();
+  // setTimeout(() => {
+  //   playerHand.forEach((card, index) => {
+  //     let cardToAppend = createPlayerDeck(card, index);
+  //     playerHandElement.appendChild(cardToAppend);
+  //   });
+  // }, 1500);
+  // dealerHandElement.lastChild.classList.remove('back-red');
+  // tableDisplayElement.innerText = displayText;
+  // playerScoreElement.innerText = playerScore;
+  // dealerScoreElement.innerText = dealerScore;
+}
+
+function appendStockCards() {
+  stockPileElement.innerText = '';
+  
+  for(let i = 0; i < 4; i++) {
+    const stockCard = document.createElement('div');
+    stockCard.classList.add('card', 'stock', 'large', 'back-red');
+    stockPileElement.appendChild(stockCard);
+  }
+}
+
+function createDealerDeck(card, index) {
+  let cardToAppend = document.createElement('div');
+  cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
+  // setTimeout(() => {
+    cardToAppend.classList.add('fade-in');
+  // }, 100);
+  if(index === dealerHand.length -1) cardToAppend.classList.add('back-red');
+  return cardToAppend;
+}
+
+function createPlayerDeck(card, index) {
+  let cardToAppend = document.createElement('div');
+  cardToAppend.classList.add('card', 'dealt', 'large', card.cardClass);
+  // setTimeout(() => {
+    cardToAppend.classList.add('fade-in');
+  // }, 100);
+  return cardToAppend;
+}
+
+function renderPlayerHit() {
+  playerHand.push(randomCard());
+  let cardToAppend = document.createElement('div');
+  cardToAppend.classList.add('card', 'dealt', 'large', playerHand[playerHand.length - 1].cardClass);
+  playerHandElement.appendChild(cardToAppend);
+  // setTimeout(() => {
+    cardToAppend.classList.add('fade-in');
+  // }, 200);
+}
+
+function renderDealerHit() {
+  tableDisplayElement.innerText = 'Dealer\'s turn';
+  dealerHand.push(randomCard());
+  const newIndex = dealerHand.length - 1;
+  const removeIndex = dealerHand.length - 2;
+  let cardToAppend = document.createElement('div');
+  cardToAppend.classList.add('card', 'dealt', 'large', dealerHand[newIndex].cardClass, 'back-red');
+  dealerHandElement.childNodes[removeIndex].classList.remove('back-red');
+  dealerHandElement.appendChild(cardToAppend);
+  // setTimeout(() => {
+    cardToAppend.classList.add('fade-in');
+  // }, 200);
+  setTimeout(() => {
+    dealerTurn();
+  }, 400);
+}
+
+function renderWinner() {
+  dealerHandElement.lastChild.classList.remove('back-red');
   tableDisplayElement.innerText = displayText;
   playerScoreElement.innerText = playerScore;
   dealerScoreElement.innerText = dealerScore;
 }
 
 function checkWinConditions() {
-  if(calculateHandValue(playerHand) > 21 || calculateHandValue(dealerHand) > 21) {
-    compareHands();
-    playerTurn = false;
-    dealerHandElement.lastChild.classList.remove('back-red');
-    return;
-  }
-  if(calculateHandValue(playerHand) === 21 || calculateHandValue(dealerHand) === 21) {
-    compareHands();
-    playerTurn = false;
-    dealerHandElement.lastChild.classList.remove('back-red');
-  } 
-  if(stand === true) {
-    compareHands();
-    dealerHandElement.lastChild.classList.remove('back-red');
-  }
+  // setTimeout(() => {
+    if(calculateHandValue(playerHand) > 21 || calculateHandValue(dealerHand) > 21) {
+      compareHands();
+      renderWinner();
+      playerTurn = false;
+      dealerHandElement.lastChild.classList.remove('back-red');
+      return;
+    }
+    if(calculateHandValue(playerHand) === 21 || calculateHandValue(dealerHand) === 21) {
+      compareHands();
+      renderWinner();
+      playerTurn = false;
+      dealerHandElement.lastChild.classList.remove('back-red');
+    } 
+    if(stand === true) {
+      compareHands();
+      renderWinner();
+      dealerHandElement.lastChild.classList.remove('back-red');
+    }
+  // }, 800);
+  // if(compareHands() !== '') {
+  //   compareHands();
+  //   renderWinner();
+  //   playerTurn = false;
+  //   dealerHandElement.lastChild.classList.remove('back-red');
+  //   return;
+  // }
 }
 
 function randomCard() {
@@ -102,24 +186,25 @@ function randomCard() {
 function playerTurnListeners(e) {
   if(!playerTurn) return;
   if(e.target.id === 'hit-button') {
-    playerHand.push(randomCard());
-    render();
+    // playerHand.push(randomCard());
+    // render();
+    renderPlayerHit();
+    checkWinConditions();
   } 
   if(e.target.id === 'stand-button') {
-    displayText = 'Dealer\'s turn';
+    // displayText = 'Dealer\'s turn';
     playerTurn = false;
+    // dealerTurn();
+    // render();
     dealerTurn();
-    render();
   }
 }
 
 function dealerTurn() {
-  while(!playerTurn && calculateHandValue(dealerHand) < 17) {
-    dealerHand.push(randomCard());
-  } 
-  if(calculateHandValue(dealerHand) >= 17) {
-    stand = true;
-  }
+  stand = true;
+  if(calculateHandValue(dealerHand) < 17) {
+    renderDealerHit();
+  } else checkWinConditions();
 }
 
 //refactor for reduce 
@@ -147,6 +232,7 @@ function compareHands() {
   
   if(dealerHandValue === 21 && playerHandValue === 21) {
     displayText === 'It\'s a tie!';
+    winner = 'tie'
   }
   if(dealerHandValue === 21) {
     displayText = 'Dealer Wins!';
@@ -171,6 +257,7 @@ function compareHands() {
       winner = 'dealer';
   } else {
       displayText = 'It\'s a tie!';
+      winner = 'tie';
   }
 
   if(winner === 'player') playerScore++;
