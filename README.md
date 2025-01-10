@@ -25,7 +25,7 @@ The rules of blackjack are as follows:
 ## Features to Add :mountain_snow:
 - [ ] Edit CSS to make to page responsive and accessible on
   different screen sizes
-- [ ]Add more advanced features of BlackJack such as  
+- [ ] Add more advanced features of BlackJack such as  
   split hands and double downs
-- [ ]Refactor the JavaScript
-- [ ]Tweak the animations and timings to be smoother
+- [ ] Refactor the JavaScript
+- [ ] Tweak the animations and timings to be smoother
