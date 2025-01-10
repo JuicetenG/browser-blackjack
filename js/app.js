@@ -66,7 +66,9 @@ function render() {
       playerHandElement.appendChild(cardToAppend);
     });
 
-  checkWinConditions();
+  setTimeout(() => {
+    checkWinConditions();
+  }, 200);
   dealerScoreElement.innerText = dealerScore;
   playerScoreElement.innerText = playerScore;
 }

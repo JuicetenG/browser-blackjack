@@ -150,12 +150,12 @@ body {
 .player-hand > .card:hover {
   z-index: 100;
   transform: translateY(-15px);
-  transition: 2s;
+  transition: 1s;
 }
 
 .player-hand > .card:not( :hover ) {
   transform: translateY(0);
-  transition: 2s;
+  transition: 1s;
 }
 
 @keyframes card-fade {
