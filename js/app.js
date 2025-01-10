@@ -91,16 +91,6 @@ function playerTurnListeners(e) {
   }
 }
 
-//called when user selects stand
-function dealerTurn() {
-  stand = true;
-  if(calculateHandValue(dealerHand) < 17) {
-    setTimeout(() => {
-      renderDealerHit();
-    }, 400);
-  } else checkWinConditions();
-}
-
 //functions for rendering cards to the DOM
 function appendStockCards() {
   stockPileElement.innerText = '';
@@ -112,14 +102,14 @@ function appendStockCards() {
 }
 
 function createDealerDeck(card, index) {
-  let cardToAppend = document.createElement('div');
+  const cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', card.cardClass);
   if(index === dealerHand.length -1) cardToAppend.classList.add('back-red');
   return cardToAppend;
 }
 
 function createPlayerDeck(card) {
-  let cardToAppend = document.createElement('div');
+  const cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', card.cardClass);
   return cardToAppend;
 }
@@ -127,7 +117,7 @@ function createPlayerDeck(card) {
 //functions to render when the player and dealer draw cards
 function renderPlayerHit() {
   playerHand.push(randomCard());
-  let cardToAppend = document.createElement('div');
+  const cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', playerHand[playerHand.length - 1].cardClass);
   playerHandElement.appendChild(cardToAppend);
 }
@@ -137,7 +127,7 @@ function renderDealerHit() {
   cardFlip();
   dealerHand.push(randomCard());
   const newIndex = dealerHand.length - 1;
-  let cardToAppend = document.createElement('div');
+  const cardToAppend = document.createElement('div');
   cardToAppend.classList.add('card', 'dealt', 'xlarge', 'shadow', dealerHand[newIndex].cardClass, 'back-red');
   dealerHandElement.appendChild(cardToAppend);
   dealerTurn();
@@ -151,6 +141,16 @@ function renderWinner() {
     playerScoreElement.innerText = playerScore;
     dealerScoreElement.innerText = dealerScore;
   }, 400);
+}
+
+//called when user selects stand
+function dealerTurn() {
+  stand = true;
+  if(calculateHandValue(dealerHand) < 17) {
+    setTimeout(() => {
+      renderDealerHit();
+    }, 400);
+  } else checkWinConditions();
 }
 
 //removes back of card and applies class for flip animation
