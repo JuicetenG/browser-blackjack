@@ -16,7 +16,56 @@ body {
   overflow: hidden;
 }
 
+.rules {
+  display: none;
+  padding: 20px 0;
+  position: absolute;
+  background-color: black;
+  color: whitesmoke;
+  opacity: 1;
+  z-index: 100;
+  width: 100vw;
+  text-align: center;
+  line-height: 30px;
+}
+
+#rules-button div {
+  width: 30px;
+  height: 5px;
+  margin: 5px;
+  background-color: maroon;
+  box-shadow: 1px 1px 2px lime;
+}
+
+#rules-button:hover {
+  cursor: pointer;
+}
+
+#rules-button:active {
+  transform: scale(1.1);
+}
+
+.owl-cave-button {
+  margin-top: 10px;
+  box-shadow: 4px 4px 8px red;
+  border-radius: 4px;
+  width: 310px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.owl-cave-button:hover {
+  cursor: pointer;
+}
+
+.owl-cave-button:active {
+  transform: translateY(3px);
+  transform: translateX(3px);
+  box-shadow: 1px 1px 4px red;
+}
+
 #header-menu {
+  position: absolute;
   margin-bottom: -30px;
   display: flex;
   align-items: center;
@@ -29,10 +78,6 @@ body {
   font-size: 2.5em;
   font-weight: bolder;
   text-shadow: 1px 1px 2px lime;
-}
-
-#rules {
-  background-color: #000000cb;
 }
 
 .table {
@@ -146,22 +191,6 @@ body {
 
 .flip {
   animation: flip 0.5s linear; 
-}
-
-#rules-button div {
-  width: 30px;
-  height: 5px;
-  margin: 5px;
-  background-color: maroon;
-  box-shadow: 1px 1px 2px lime;
-}
-
-#rules-button:hover {
-  cursor: pointer;
-}
-
-#rules-button:active  {
-  transform: scale(1.1);
 }
 
 .table-sidebar {

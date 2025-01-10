@@ -242,3 +242,17 @@ function compareHands() {
   if(winner === 'player') playerScore++;
   if(winner === 'dealer') dealerScore++;
 }
+
+//rules button stuff
+const rulesButton = document.querySelector('#rules-button');
+const rulesElement = document.querySelector('.rules');
+rulesButton.addEventListener('click', () => {
+  rulesElement.style.display = 'block';
+  document.querySelector('.table').style.opacity = "0";
+});
+
+const owlCaveButton = document.querySelector('.owl-cave-button');
+owlCaveButton.addEventListener('click', () => {
+  rulesElement.style.display = 'none';
+  document.querySelector('.table').style.opacity = "0.98";
+});
