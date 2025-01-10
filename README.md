@@ -11,7 +11,7 @@ The rules of blackjack are as follows:
 * you may hit to draw cards until you decide to stand
 * once you decide to stand, the dealer will draw cards while their hand  
   values less than 17
-* after the dealers turn is up the hands are compared to determine a winne
+* after the dealers turn is up the hands are compared to determine a winner
 
 ## Screenshots :camera:
 ![Game Screenshot](./images/twinpeaksblackjack.jpg)
@@ -25,7 +25,6 @@ The rules of blackjack are as follows:
 ## Features to Add :mountain_snow:
 - [ ] Edit CSS to make to page responsive and accessible on
   different screen sizes
-- [ ] Add more advanced features of BlackJack such as  
-  split hands and double downs
+- [ ] Add more advanced features of BlackJack such as split hands and double downs
 - [ ] Refactor the JavaScript
 - [ ] Tweak the animations and timings to be smoother
