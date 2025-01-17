@@ -1,4 +1,4 @@
-#RIP David Lynch
+# RIP David Lynch
 ## Twin Peaks BlackJack - [Click to play!](https://juiceteng.github.io/browser-blackjack/)
 ![owl cave](./images/owlcave.png)
 >"The owls are not what they seem" - The Giant
